@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package com.hlebon.betpawa.protos;
+
+option java_multiple_files = true;
+option java_package = "com.hlebon.betpawa.protos";
+option java_outer_classname = "BetpawaServiceProto";
+
+service BetpawaService {
+
+    rpc Deposit (DepositRequest) returns (VoidResponse);
+
+    rpc Withdraw (WithdrawRequest) returns (VoidResponse);
+
+    rpc Balance (BalanceRequest) returns (BalanceResponse);
+
+}
+
+// Deposit
+
+message DepositRequest {
+    string user_id = 1;
+    int32 amount = 2;
+    Currency currency = 3;
+}
+
+enum Currency {
+    CURRENCY_INVALID = 0;
+    CURRENCY_EUR = 1;
+    CURRENCY_USD = 2;
+    CURRENCY_GBP = 3;
+}
+
+// Withdraw
+
+message WithdrawRequest {
+    string user_id = 1;
+    int32 amount = 2;
+    Currency currency = 3;
+}
+
+// Balance
+
+message BalanceRequest {
+    string user_id = 1;
+}
+
+message BalanceResponse {
+    repeated CurrencyBalance balances = 1;
+    Error error = 2;
+}
+
+message CurrencyBalance {
+    int32 amount = 1;
+    Currency currency = 2;
+}
+
+// Common
+
+message VoidResponse {
+    Error error = 1;
+}
+
+message Error {
+    string message = 1;
+}
+
