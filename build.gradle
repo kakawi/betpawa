@@ -46,4 +46,15 @@ protobuf {
         // Download from repositories
         artifact = 'com.google.protobuf:protoc:3.9.1'
     }
+    // Locate the codegen plugins
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.23.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
 }
