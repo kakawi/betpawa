@@ -1,5 +1,7 @@
 package com.hlebon.betpawa.controller;
 
+import com.hlebon.betpawa.entity.Wallet;
+import com.hlebon.betpawa.mapper.api.BalanceResponseMapper;
 import com.hlebon.betpawa.mapper.api.DepositRequestMapper;
 import com.hlebon.betpawa.mapper.api.VoidResponseMapper;
 import com.hlebon.betpawa.mapper.api.WithDrawRequestMapper;
@@ -15,6 +17,8 @@ import io.grpc.stub.StreamObserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BetpawaControllerImpl extends BetpawaServiceGrpc.BetpawaServiceImplBase {
 
@@ -22,18 +26,21 @@ public class BetpawaControllerImpl extends BetpawaServiceGrpc.BetpawaServiceImpl
     private final DepositRequestMapper depositRequestMapper;
     private final VoidResponseMapper voidResponseMapper;
     private final WithDrawRequestMapper withDrawRequestMapper;
+    private final BalanceResponseMapper balanceResponseMapper;
 
     @Autowired
     public BetpawaControllerImpl(
             final BetpawaService betpawaService,
             final DepositRequestMapper depositRequestMapper,
             final VoidResponseMapper voidResponseMapper,
-            final WithDrawRequestMapper withDrawRequestMapper
+            final WithDrawRequestMapper withDrawRequestMapper,
+            final BalanceResponseMapper balanceResponseMapper
     ) {
         this.betpawaService = betpawaService;
         this.depositRequestMapper = depositRequestMapper;
         this.voidResponseMapper = voidResponseMapper;
         this.withDrawRequestMapper = withDrawRequestMapper;
+        this.balanceResponseMapper = balanceResponseMapper;
     }
 
     @Override
@@ -70,8 +77,20 @@ public class BetpawaControllerImpl extends BetpawaServiceGrpc.BetpawaServiceImpl
     }
 
     @Override
-    public void balance(BalanceRequest request, StreamObserver<BalanceResponse> responseObserver) {
-        super.balance(request, responseObserver);
+    public void balance(final BalanceRequest request, final StreamObserver<BalanceResponse> responseObserver) {
+        OperationResult<List<Wallet>> operationResult = new OperationResult<>();
+
+        try {
+            List<Wallet> balance = betpawaService.balance(request.getUserId());
+            operationResult.setResult(balance);
+        } catch (final ServiceException e) {
+            operationResult.setError(generateOperationError(e.getMessage()));
+        }
+
+        BalanceResponse response = balanceResponseMapper.mapToProto(operationResult);
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
     }
 
     private OperationResult.OperationError generateOperationError(final String message) {

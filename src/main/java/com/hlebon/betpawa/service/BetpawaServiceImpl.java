@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Service
 public class BetpawaServiceImpl implements BetpawaService {
@@ -63,6 +64,15 @@ public class BetpawaServiceImpl implements BetpawaService {
         }
 
         wallet.setAmount(currentAmount - withdraw);
+    }
+
+    @Override
+    public List<Wallet> balance(final int userId) throws ServiceException {
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new ServiceException("Not exist such user"));
+
+        return walletRepository.findByUser(user);
     }
 
     private void validateDepositRequest(final DepositRequest request) throws ServiceException {

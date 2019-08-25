@@ -42,7 +42,7 @@ message WithdrawRequest {
 // Balance
 
 message BalanceRequest {
-    string user_id = 1;
+    int32 user_id = 1;
 }
 
 message BalanceResponse {
@@ -51,7 +51,7 @@ message BalanceResponse {
 }
 
 message CurrencyBalance {
-    int32 amount = 1;
+    int64 amount = 1;
     Currency currency = 2;
 }
 
