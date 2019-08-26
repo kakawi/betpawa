@@ -60,10 +60,17 @@ public class BetpawaServiceImpl implements BetpawaService {
         long currentAmount = wallet.getAmount();
         Long withdraw = request.getAmount();
         if (currentAmount < withdraw) {
-            throw new ServiceException("Not enough money");
+            throw new ServiceException("insufficient funds");
         }
 
         wallet.setAmount(currentAmount - withdraw);
+    }
+
+    private void validateDepositRequest(final DepositRequest request) throws ServiceException {
+        Long amount = request.getAmount();
+        if (amount < 0) {
+            throw new ServiceException("Amount can't be negative");
+        }
     }
 
     @Override
@@ -73,13 +80,6 @@ public class BetpawaServiceImpl implements BetpawaService {
                 .orElseThrow(() -> new ServiceException("Not exist such user"));
 
         return walletRepository.findByUser(user);
-    }
-
-    private void validateDepositRequest(final DepositRequest request) throws ServiceException {
-        Long amount = request.getAmount();
-        if (amount < 0) {
-            throw new ServiceException("Amount can't be negative");
-        }
     }
 
     private void validateWithdrawRequest(final WithDrawRequest request) throws ServiceException {

@@ -24,7 +24,7 @@ public class BalanceResponseMapperImpl implements BalanceResponseMapper {
             builder.setError(error);
         }
 
-        if (!entity.getResult().isEmpty()) {
+        if (entity.getResult() != null) {
             for (Wallet wallet : entity.getResult()) {
                 CurrencyBalance currencyBalance = CurrencyBalance.newBuilder()
                         .setAmount(wallet.getAmount())

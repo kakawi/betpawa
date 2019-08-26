@@ -43,3 +43,8 @@ protobuf {
         }
     }
 }
+
+sourceSets.main.java.srcDirs = [
+        "${buildDir}/generated/source/proto/main/java",
+        "${buildDir}/generated/source/proto/main/grpc"
+]
