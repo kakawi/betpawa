@@ -11,6 +11,7 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'idea'
 apply plugin: 'com.google.protobuf'
 
 group 'com.hlebon'
@@ -22,7 +23,7 @@ repositories {
 
 dependencies {
     compile 'com.google.protobuf:protobuf-java:3.9.1'
-    compile group: 'io.grpc', name: 'grpc-all', version: '1.19.0'
+    compile group: 'io.grpc', name: 'grpc-all', version: '1.23.0'
 }
 
 protobuf {
@@ -44,7 +45,9 @@ protobuf {
     }
 }
 
-sourceSets.main.java.srcDirs = [
-        "${buildDir}/generated/source/proto/main/java",
-        "${buildDir}/generated/source/proto/main/grpc"
-]
+idea {
+    module {
+        sourceDirs += file("${buildDir}/generated/source/proto/main/java");
+        sourceDirs += file("${buildDir}/generated/source/proto/main/grpc");
+    }
+}
