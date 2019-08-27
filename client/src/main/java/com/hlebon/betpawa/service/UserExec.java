@@ -1,4 +1,4 @@
-package com.hlebon.betpawa;
+package com.hlebon.betpawa.service;
 
 import com.hlebon.betpawa.protos.BetpawaServiceGrpc;
 import com.hlebon.betpawa.round.Round;

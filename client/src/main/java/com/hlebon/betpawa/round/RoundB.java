@@ -4,7 +4,9 @@ import com.hlebon.betpawa.protos.BetpawaServiceGrpc;
 import com.hlebon.betpawa.protos.Currency;
 import com.hlebon.betpawa.protos.DepositRequest;
 import com.hlebon.betpawa.protos.WithdrawRequest;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RoundB implements Round {
 
     @Override
