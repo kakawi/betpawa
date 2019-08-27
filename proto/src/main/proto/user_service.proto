@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package com.hlebon.betpawa.protos;
+
+import "google/protobuf/empty.proto";
+import "common.proto";
+
+option java_multiple_files = true;
+option java_package = "com.hlebon.betpawa.protos";
+option java_outer_classname = "UserServiceProto";
+
+service UserService {
+
+    rpc Create (CreateUserRequest) returns (VoidResponse);
+
+    rpc DeleteAll (google.protobuf.Empty) returns (VoidResponse);
+
+}
+
+// Deposit
+
+message CreateUserRequest {
+    int32 id = 1;
+    string name = 2;
+}

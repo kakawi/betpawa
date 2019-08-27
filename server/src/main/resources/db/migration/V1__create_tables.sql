@@ -1,7 +1,6 @@
 create table user
 (
-    id   int auto_increment
-        primary key,
+    id   int primary key,
     name varchar(128) not null,
     constraint table_name_name_uindex
         unique (name)

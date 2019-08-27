@@ -11,21 +11,28 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class UserExec implements Runnable {
+
     private final int concurrentThreadsPerUser;
     private final int roundPerThread;
     private final RoundManager roundManager;
     private final int userId;
+    private final int port;
+    private final String host;
 
     public UserExec(
             final int concurrentThreadsPerUser,
             final int roundPerThread,
             final RoundManager roundManager,
-            final int userId
+            final int userId,
+            final int port,
+            final String host
     ) {
         this.concurrentThreadsPerUser = concurrentThreadsPerUser;
         this.roundPerThread = roundPerThread;
         this.roundManager = roundManager;
         this.userId = userId;
+        this.port = port;
+        this.host = host;
     }
 
     @Override
@@ -48,7 +55,7 @@ public class UserExec implements Runnable {
     }
 
     private void startRound() {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8087)
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext()
                 .build();
         BetpawaServiceGrpc.BetpawaServiceBlockingStub stub = BetpawaServiceGrpc.newBlockingStub(channel);

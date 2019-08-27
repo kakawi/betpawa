@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package com.hlebon.betpawa.protos;
 
+import "common.proto";
+
 option java_multiple_files = true;
 option java_package = "com.hlebon.betpawa.protos";
 option java_outer_classname = "BetpawaServiceProto";
@@ -54,14 +56,3 @@ message CurrencyBalance {
     int64 amount = 1;
     Currency currency = 2;
 }
-
-// Common
-
-message VoidResponse {
-    Error error = 1;
-}
-
-message Error {
-    string message = 1;
-}
-
