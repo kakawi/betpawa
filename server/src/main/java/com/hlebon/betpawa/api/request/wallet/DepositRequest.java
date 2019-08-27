@@ -1,4 +1,4 @@
-package com.hlebon.betpawa.api.request;
+package com.hlebon.betpawa.api.request.wallet;
 
 import com.hlebon.betpawa.entity.Wallet;
 

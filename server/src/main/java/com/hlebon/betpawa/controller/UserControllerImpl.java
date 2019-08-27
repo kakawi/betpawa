@@ -7,7 +7,7 @@ import com.hlebon.betpawa.protos.CreateUserRequest;
 import com.hlebon.betpawa.protos.UserServiceGrpc;
 import com.hlebon.betpawa.protos.VoidResponse;
 import com.hlebon.betpawa.service.ServiceException;
-import com.hlebon.betpawa.service.UserService;
+import com.hlebon.betpawa.service.user.UserService;
 import io.grpc.stub.StreamObserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,8 @@
-package com.hlebon.betpawa.mapper.api;
+package com.hlebon.betpawa.mapper.api.wallet;
 
-import com.hlebon.betpawa.api.request.WithDrawRequest;
+import com.hlebon.betpawa.api.request.wallet.WithDrawRequest;
 import com.hlebon.betpawa.entity.Wallet;
+import com.hlebon.betpawa.mapper.api.EnumMapper;
 import com.hlebon.betpawa.protos.WithdrawRequest;
 import org.springframework.stereotype.Component;
 

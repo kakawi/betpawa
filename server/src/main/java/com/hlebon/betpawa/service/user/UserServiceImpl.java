@@ -1,9 +1,10 @@
-package com.hlebon.betpawa.service;
+package com.hlebon.betpawa.service.user;
 
 import com.hlebon.betpawa.api.request.user.CreateUserRequest;
 import com.hlebon.betpawa.entity.User;
 import com.hlebon.betpawa.entity.Wallet;
 import com.hlebon.betpawa.repository.UserRepository;
+import com.hlebon.betpawa.service.ServiceException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;

@@ -1,17 +1,17 @@
 package com.hlebon.betpawa.controller;
 
 import com.hlebon.betpawa.entity.Wallet;
-import com.hlebon.betpawa.mapper.api.BalanceResponseMapper;
-import com.hlebon.betpawa.mapper.api.DepositRequestMapper;
+import com.hlebon.betpawa.mapper.api.wallet.BalanceResponseMapper;
+import com.hlebon.betpawa.mapper.api.wallet.DepositRequestMapper;
 import com.hlebon.betpawa.mapper.api.VoidResponseMapper;
-import com.hlebon.betpawa.mapper.api.WithDrawRequestMapper;
+import com.hlebon.betpawa.mapper.api.wallet.WithDrawRequestMapper;
 import com.hlebon.betpawa.protos.BalanceRequest;
 import com.hlebon.betpawa.protos.BalanceResponse;
 import com.hlebon.betpawa.protos.BetpawaServiceGrpc;
 import com.hlebon.betpawa.protos.DepositRequest;
 import com.hlebon.betpawa.protos.VoidResponse;
 import com.hlebon.betpawa.protos.WithdrawRequest;
-import com.hlebon.betpawa.service.BetpawaService;
+import com.hlebon.betpawa.service.wallet.BetpawaService;
 import com.hlebon.betpawa.service.ServiceException;
 import io.grpc.stub.StreamObserver;
 import org.springframework.beans.factory.annotation.Autowired;

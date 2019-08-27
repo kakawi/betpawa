@@ -1,7 +1,8 @@
-package com.hlebon.betpawa.mapper.api;
+package com.hlebon.betpawa.mapper.api.wallet;
 
 import com.hlebon.betpawa.controller.OperationResult;
 import com.hlebon.betpawa.entity.Wallet;
+import com.hlebon.betpawa.mapper.api.EnumMapper;
 import com.hlebon.betpawa.protos.BalanceResponse;
 import com.hlebon.betpawa.protos.Currency;
 import com.hlebon.betpawa.protos.CurrencyBalance;

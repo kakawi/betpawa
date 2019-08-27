@@ -1,8 +1,9 @@
-package com.hlebon.betpawa.service;
+package com.hlebon.betpawa.service.wallet;
 
-import com.hlebon.betpawa.api.request.DepositRequest;
-import com.hlebon.betpawa.api.request.WithDrawRequest;
+import com.hlebon.betpawa.api.request.wallet.DepositRequest;
+import com.hlebon.betpawa.api.request.wallet.WithDrawRequest;
 import com.hlebon.betpawa.entity.Wallet;
+import com.hlebon.betpawa.service.ServiceException;
 
 import java.util.List;
 
